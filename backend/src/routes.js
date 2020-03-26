@@ -8,6 +8,16 @@ const IncidentController = require('./controllers/IncidentController');
 const ProfileController = require('./controllers/ProfileController');
 const SessionController = require('./controllers/SessionController');
 
+// ****** Tipos de requisições ************
+// * Query Params:  Parâmetros nomeados enviados na rota após o símbolo "?" (usado para filtros, paginação, etc).
+// * Router Params: Parâmetros utilizados para identificar recursos. exemplos: "/users", "/users/:id"                                                                                                                       
+// * Request Body: Corpo da requisição utilizado para criar ou alterar recursos.
+
+// ****** Acessando as requisições ********
+// * Query Params: const params = request.query;                                                          
+// * Route Params: const params = request.params;
+// * Request Body: const params = request.body; (Vc precisa definir o que ele vai receber, JSON usando o framework express por exemplo precisa ser: app.use(express.json());)
+
 // *** Ongs ***
 
 routes.post('/ongs', OngController.create);
