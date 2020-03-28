@@ -17,6 +17,8 @@ export default function Incidents() {
     const [incidents, setIncidents] = useState([]);  
     const [totalIncidents, setTotalIncidents] = useState(0);
 
+    const [textDescription, setTextDescription] = useState('');
+
     // *** Estados da Paginação ***
     const [page, setPage] = useState(1); // Estado inicial da página logicamente é zero.
     const [loading, setLoading] = useState(false); // Guarda a info quando estamos buscando dados novos pra não serem buscados novamente pra carregar uma página por vez.
@@ -40,6 +42,14 @@ export default function Incidents() {
 
             return;
 
+        }              
+
+        if (totalIncidents == 0){
+            setTextDescription("Hmmm nada por aqui, ou servidor caiu ou graças a Deus nada aconteceu :)");
+        } 
+        else 
+        {         
+            setTextDescription("Escolha um dos casos abaixo e salve o dia.");
         }
 
         setLoading(true);
@@ -79,8 +89,9 @@ export default function Incidents() {
             </View>
 
             <Text style={styles.title}>Bem Vindo!</Text>
-            <Text style={styles.description}>Escolha um dos casos abaixo e salve o dia.</Text>
 
+            <Text style={styles.description}>{textDescription}</Text>          
+               
             <FlatList
                 
                 style={styles.incidentList}
@@ -115,7 +126,7 @@ export default function Incidents() {
 
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={ () => navigateToDetail(incident) }
+                            onPress={ () => navigateToDetail(incident) }                            
                         >
 
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
