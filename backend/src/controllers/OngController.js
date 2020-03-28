@@ -1,5 +1,5 @@
 const connection = require('../database/connection');
-const crypto = require('crypto');
+const generateUniqueId = require('../utils/generateUniqueId');
 
 module.exports = {
 
@@ -15,7 +15,7 @@ module.exports = {
 
         const {name, email, whatsapp, city, uf } = request.body;
 
-        const id = crypto.randomBytes(4).toString('HEX'); // 4 caracteres.    
+        const id = generateUniqueId();
     
         // Await faz o fluxo esperar a inserção no banco de dados para continuar e ai sim dar a resposta, lembre de deixar a função
         // assíncrona também: async (request, response) => {})/

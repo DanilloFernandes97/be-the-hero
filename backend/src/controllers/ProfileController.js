@@ -4,9 +4,9 @@ const connection = require('../database/connection');
 // IncidentController.js, criou essa.
 module.exports = {
 
-    async index(request, response) {
+    async index(request, response) {    
 
-      const incidents = await connection('incidents').select('*');
+      const incidents = await connection('incidents').where('ong_id', request.headers.authorization).select('*');
 
       return response.json(incidents);
 
