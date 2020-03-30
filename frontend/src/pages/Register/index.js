@@ -6,12 +6,14 @@ import { Link, useHistory } from 'react-router-dom'; // Pacote para a rota e nã
 
 import { FiArrowLeft } from 'react-icons/fi';
 
+import InputMask  from 'react-input-mask';
+
 import api from '../../services/api';
 
 import logoimg from '../../assets/logo.svg';
 
-export default function Register(){
-     
+export default function Register(){      
+
     // Faz a navegação via JavaScript quando não se pode user o Link to.
     const history= useHistory();
 
@@ -21,7 +23,7 @@ export default function Register(){
     const [whatsapp, setWhatsApp] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
-
+    
     async function handleRegister(e){
 
         // e -> parametro do evento js.
@@ -46,7 +48,7 @@ export default function Register(){
             history.push('/');
 
         } catch (error) {
-            window.alert('Erro no cadastro, tente novamente.');
+            window.alert('Erro no cadastro, tente novamente, mensagem do erro: ' + error );
         }
 
     }
@@ -87,10 +89,12 @@ export default function Register(){
                     onChange={e => setEmail(e.target.value)}
                 />
 
-                <input 
-                    placeholder="WhatsApp"
+                <InputMask
+                    type="tel"
+                    placeholder="WhatsApp:" 
+                    mask="(99) 99999-9999"
                     value={whatsapp}
-                    onChange={e => setWhatsApp(e.target.value)}
+                    onChange={e => setWhatsApp(e.target.value.replace(/[^\d]+/g,''))}
                 />
 
                 <div className="input-group">
